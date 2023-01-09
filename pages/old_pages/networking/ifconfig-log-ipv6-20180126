@@ -1,0 +1,4 @@
+          inet6 addr: 2600:8801:3580:5c40:11cc:54b5:f62d:f753/64 Scope:Global
+          inet6 addr: 2600:8801:3580:5c40:5660:c0f9:51a9:151e/64 Scope:Global
+          inet6 addr: fe80::1b27:b6d6:c873:7840/64 Scope:Link
+          inet6 addr: ::1/128 Scope:Host

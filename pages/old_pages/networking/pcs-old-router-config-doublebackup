@@ -1,0 +1,241 @@
+pchy-dmz01#dir  
+Directory of flash:/
+
+    1  -rw-    42626728   Sep 7 2010 15:02:46 -07:00  c1841-advipservicesk9-mz.151-1.T.bin
+    2  drw-           0  Mar 27 2017 13:23:28 -07:00  testing
+    4  drw-           0  Mar 27 2017 13:23:38 -07:00  archive
+    5  drw-           0  Mar 27 2017 13:23:46 -07:00  production
+
+128163840 bytes total (85516288 bytes free)
+pchy-dmz01#copy flash
+pchy-dmz01#copy flash:/arc
+pchy-dmz01#copy flash:/archive/?
+flash:/archive/dms-backup-config_20170327.bin  
+
+pchy-dmz01#copy flash:/archive/dm
+pchy-dmz01#copy flash:/archive/dms-backup-config_20170327.bin runn
+pchy-dmz01#copy flash:/archive/dms-backup-config_20170327.bin running-config
+Destination filename [running-config]? 
+
+Changing configuration back to no aaa new-model is not supported. 
+Continue?[confirm]
+A pre-shared key for address mask 72.48.134.89 255.255.255.255 already exists!
+
+5293 bytes copied in 1.768 secs (2994 bytes/sec)
+
+PCSRTR#write era
+PCSRTR#show runn   
+PCSRTR#show running-config 
+Building configuration...
+
+Current configuration : 6184 bytes
+!
+! Last configuration change at 13:52:30 PDT Mon Mar 27 2017
+!
+version 15.1
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service tcp-small-servers max-servers 3
+service sequence-numbers
+!
+hostname PCSRTR
+!
+boot-start-marker
+boot-end-marker
+!
+security authentication failure rate 10 log
+security passwords min-length 6
+logging buffered 65536 notifications
+logging console critical
+enable secret 5 $1$sTrU$JePV2bLRv.bHckdr4Simh.
+enable password 7 045702000A285F4C1C0D0433362F3E361878777B1318
+!
+no aaa new-model
+!
+clock timezone PST -8
+clock summer-time PDT recurring
+!
+!
+dot11 syslog
+ip source-route
+no ip gratuitous-arps
+!
+!
+no ip dhcp use vrf connected
+ip dhcp excluded-address 192.168.100.1 192.168.100.99
+ip dhcp excluded-address 192.168.100.200 192.168.100.255
+!
+ip dhcp pool 192.168.100.0/24
+   network 192.168.100.0 255.255.255.0
+   default-router 192.168.100.1 
+   dns-server 192.168.1.11 192.168.1.8 65.41.120.51 
+!
+!
+ip cef
+no ip domain lookup
+ip inspect tcp idle-time 14400
+ip inspect name autosec_inspect cuseeme timeout 3600
+ip inspect name autosec_inspect ftp timeout 3600
+ip inspect name autosec_inspect http timeout 3600
+ip inspect name autosec_inspect rcmd timeout 3600
+ip inspect name autosec_inspect realaudio
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+license udi pid CISCO1841 sn FHK12352ARW
+username jknox password 7 00081A00015218041A354D6A2D3D372520585F570A06
+!
+redundancy
+!
+!
+ip ssh authentication-retries 5
+! 
+!
+crypto isakmp policy 1
+ encr 3des
+ hash md5
+ authentication pre-share
+ group 2
+ lifetime 28800
+!
+crypto isakmp policy 2
+ encr 3des
+ authentication pre-share
+ group 2
+ lifetime 28800
+crypto isakmp key dfq78ig address 72.48.134.89
+!
+!
+crypto ipsec transform-set to_dms esp-3des esp-md5-hmac 
+!
+crypto map to_dms 10 ipsec-isakmp 
+ set peer 72.48.134.89
+ set transform-set to_dms 
+ match address 101
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ description Outside
+ ip address 184.0.25.131 255.255.255.128
+ ip access-group blockinternet in
+ ip nat outside
+ ip virtual-reassembly
+ duplex auto
+ speed auto
+ no mop enabled
+ crypto map to_dms
+!
+interface FastEthernet0/1
+ description Inside
+ ip address 192.168.100.1 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+ duplex auto
+ speed auto
+ no mop enabled
+!
+interface Serial0/0/0
+ no ip address
+ shutdown
+!
+ip forward-protocol nd
+ip http server
+no ip http secure-server
+!
+!
+ip nat pool pcspool 184.0.25.131 184.0.25.131 netmask 255.255.255.128
+ip nat inside source route-map nonat pool pcspool overload
+ip route 0.0.0.0 0.0.0.0 184.0.25.129
+ip route 0.0.0.0 0.0.0.0 FastEthernet0/0
+!
+ip access-list extended blockinternet
+ permit ip 184.0.25.129 0.0.0.126 any
+ permit ip 72.48.134.80 0.0.0.15 any
+ permit ip 207.71.41.176 0.0.0.15 any
+ permit ip host 209.220.107.134 any
+ permit ip host 209.220.107.135 any
+ permit ip host 65.41.120.51 any
+ permit ip host 74.116.71.243 any
+ permit ip host 24.234.114.239 any
+ permit ip host 24.234.136.78 any
+ permit ip host 24.234.162.108 any
+ permit ip host 24.234.162.237 any
+ permit ip host 24.234.162.241 any
+ permit ip host 24.234.164.113 any
+ permit ip host 24.234.166.131 any
+ permit ip host 24.234.191.163 any
+ permit ip host 24.234.140.142 any
+ permit ip host 24.234.114.39 any
+ permit ip host 24.120.130.37 any
+ permit ip host 24.120.130.40 any
+ permit ip host 24.120.119.214 any
+ deny   ip any any
+!
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 209.220.107.134
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 209.220.107.135
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 65.41.120.51
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 74.116.73.243
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.234.114.239
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.234.136.78
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.234.162.108
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.234.162.237
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.234.162.241
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.234.164.113
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.234.166.131
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.234.191.163
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.234.140.142
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.234.114.39
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.120.130.37
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.120.130.40
+access-list 101 deny   ip 192.168.100.0 0.0.0.255 host 24.120.119.214
+access-list 101 permit ip 192.168.100.0 0.0.0.255 any
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 209.220.107.134
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 209.220.107.135
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 65.41.120.51
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 74.116.73.243
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.234.114.239
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.234.136.78
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.234.162.108
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.234.162.237
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.234.162.241
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.234.164.113
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.234.166.131
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.234.191.163
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.234.140.142
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.234.114.39
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.120.130.37
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.120.130.40
+access-list 110 permit ip 192.168.100.0 0.0.0.255 host 24.120.119.214
+access-list 110 permit ip 192.168.100.0 0.0.0.255 184.0.25.129 0.0.0.126
+!
+!
+!
+!
+route-map nonat permit 10
+ match ip address 110
+!
+!
+!         
+control-plane
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ session-timeout 60 
+ password thoebro8
+ login
+ transport input telnet
+!
+scheduler allocate 20000 1000
+end

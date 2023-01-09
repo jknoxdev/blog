@@ -1,0 +1,70 @@
+
+
+
+from talk 1
+
+
+ - don't use non standard transaction notes (7 is default)
+ - doublespends, and theres no way to check for doubles-spends, unless the crypo is broken
+ - tainted bitocin, much better term to use
+ - if z cash impletened privacy by defaul it would be a competing currency
+ - checkout the monero research lab, 
+ - "it's not a crypto currency if it's not fungible"
+ - 
+howard chu
+ - authur, ivenever use f=software i don't 
+ - " diont use software unless ive built it
+ - Monero is the esperanto word for "money?
+ - the network contribuestthe blocks in groups, 
+ - blockchain commites havppen globally about every 2 mintues
+ - does the transaction broadcast have to reach each of the nodes in order for it to be recognized? 
+ - what is the difference rate in the nodes that get the wrong answer, or how would you find that out? 
+ - eventual consistency, what is the portionn wher of code that will help figure out d/ determines for race conditions
+ - what are some of the things we can do to help the kovri network
+ - setup consulting doing monero
+ - how are race conditions fixed on the network
+ - what are some of the ways that we can holep to increase the transactions per second on the network
+ - lookup emaission rate
+ - people have to become nte=oteworthy as well 
+ - lookup oederson commitments
+ - each rangeproof 
+ - "bulletproof"
+ - lookup keccak
+ - uses aes, gressel? aes-256, 
+ - what random function does it use to guess the next portion of the memory
+ - open sourced sha256 chip?
+ - random jas? 
+ - programmable pow, jandomjs
+ - 
+ - blocksize is mean of last 1000 blocks
+ - couldnt you just 
+ - did you have timing issues while the bockachain was in ram / were leemnets of it dissapearing whtile it was runing? 
+ - U2 is the eeprom
+ - NFC type 4, 15-20 profiles
+ - m24niner
+ - NFC Tools
+ - AT Tiny MTU tag interface
+ - lookup AVRdude
+ - 
+
+more notes: 
+the equation of exchange in economics
+
+
+ - M*V = P*Q
+	m = circulation
+  	v = velocity
+
+	p = prive level of currency
+	q = indec of expenditures (inflation)
+
+doubling the inflation will double the price? 
+minimum tail emission? 
+Peter Resises paper? 
+
+s than 1 minute block syize sync, nany faster and theylll start having latency issues, 
+  - what if we used bittorrent for syncing the or torrent style sync 
+
+*** random notes ***
+#ideas
+using DHT for the monero blockchain

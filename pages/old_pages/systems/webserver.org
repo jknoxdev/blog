@@ -1,0 +1,2 @@
+# notes to setup for possible webserver
+** 

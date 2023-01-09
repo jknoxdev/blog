@@ -1,0 +1,12 @@
+vmctl start -i 1 -B ~/iso/mini.iso -d ~/vm/ubuntu.img -m 1024M -c ubuntu 
+
+dmesg |grep vmm
+dhcpd_flags=vether0
+/etc/rc.conf.local
+
+rcctl enable vmd
+rcctl start vmd
+
+pkg_add vmm-firmware-1.14.0
+
+vmctl start -i 1 -L -r /home/arx/vm/iso/ubuntu_mini_1804.iso -d /home/arx/vm/disks/ubuntu_1804.img -m 4096 -c ubuntu_1804_base

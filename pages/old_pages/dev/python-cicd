@@ -1,0 +1,105 @@
+
+
+
+what are bitbuckets
+gaml? 
+yaml
+
+
+
+bitbucket configs / things it needs: 
+	- image
+	- clone (depth any number >0, <50
+	- pipelines (contains each of the pipeline definitiions
+		(enable under settings->settings->pipelines
+
+	- branches - contain the pipline definitiion for all branches
+	- steps - BEU build execution unit, debian pacckages, each one will have 
+		name 
+		script - (commands that would have to run to install the application)
+	
+things to do before you run: 
+	- api eky into Environment variables
+		-ssh keys
+		-host information
+
+
+
+virtualenv env
+(when running in your environment)
+.gitignore
+	___enc
+	
+#lookup gunicorn / green unicorn
+
+
+syntax: 
+
+bitbucket-pipelines.yaml
+
+image:
+clone:
+	depth: full
+	
+pipelines:
+	branches:
+		(will stage off different branches)
+		master:
+			- step:
+				name: 
+				script:
+					- pip install -r requirements.txt
+					- python tests.py
+			- step:
+				name: deploy to heroku
+				trigger: (manual) (forces a user to reveiw prior to posting) 
+				script: git push https://heroku:$HEROKUAPIKEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD
+
+--back to sheell
+
+pip install gunicorn
+pip install flask
+pip freeze > requirements.txt (from yaml file)
+
+app.py
+from flask import Flask
+
+
+		(lookup assert function)
+
+
+teensy
+teamcity
+
+
+
+automation framework for mobile devices
+
+bamboo vs. ec2, 
+
+checkout flask
+
+(lookup) @app.route('/')
+	
+f
+
+	- settings to run pipelines
+	
+questions: 
+	gaml? gamble? 
+
+
+
+
+www.abinaryworld.com for source code
+Zac Brown
+
+
+look for money20/20 hackathon @ venetian
+november has startup weekend either unlv or innevation center
+startup weekend
+numpy vectorization for nueral networks for oct. 9th
+
+ibehavioral developing cucumber? 
+
+

@@ -1,0 +1,10 @@
+hkp://pgp.mit.edu:80
+hkp://pgp.mit.edu:80 streisand_gpg_keyserver_address to hkp://pgp.mit.edu:80 
+.gnupg/gpg.conf
+  keyserver hkps://keys.openpgp.org
+  keyserver-options ca-cert-file=/etc/pki/tls/certs/ca-bundle.crt
+  /etc/ssl/certs/ca-certificates.crt
+ https://github.com/googleads/googleads-php-lib/wiki/Steps-for-troubleshooting-CA-file-issues 
+https://github.com/kassemz/streisand
+ SSL 
+Address = 10.66.66.2/24,fd42:42:42::2/64

@@ -1,0 +1,50 @@
+
+
+
+
+ipv6 inspect name easy-wall http
+ipv6 inspect name easy-wall https
+ipv6 inspect name easy-wall ssh
+ipv6 inspect name easy-wall rtsp
+ipv6 inspect name easy-wall ipsec-msft
+ipv6 inspect name easy-wall dns
+ipv6 inspect name easy-wall h323
+ipv6 inspect name easy-wall h323-annexe
+ipv6 inspect name easy-wall h323-nxg
+ipv6 inspect name easy-wall icmp
+ipv6 inspect name easy-wall ldap
+ipv6 inspect name easy-wall ldaps
+ipv6 inspect name easy-wall nfs
+ipv6 inspect name easy-wall ntp
+ipv6 inspect name easy-wall webster
+ipv6 inspect name easy-wall user-overwatch
+ipv6 inspect name easy-wall sip
+ipv6 inspect name easy-wall user-cryptostorm
+ipv6 inspect name easy-wall bittorrent
+ipv6 inspect name easy-wall user-steam
+ipv6 inspect name easy-wall hsrp
+ipv6 inspect name easy-wall realaudio
+ipv6 inspect name easy-wall socks
+ipv6 inspect name easy-wall user-itunes
+ipv6 inspect name easy-wall irc
+ipv6 inspect name easy-wall ircs
+ipv6 inspect name easy-wall ircu
+ipv6 inspect name easy-wall irc-serv
+ipv6 inspect name easy-wall user-git
+ipv6 inspect name easy-wall user-gpg
+ipv6 inspect name easy-wall user-bitcoin
+ipv6 inspect name easy-wall user-monero
+ipv6 inspect name easy-wall user-lt2p-ipsec
+ipv6 inspect name easy-wall isakmp
+ipv6 inspect name easy-wall user-dwarfpool
+ipv6 inspect name easy-wall user-yum
+ipv6 inspect name easy-wall user-lxc
+ipv6 inspect name easy-wall user-openstack
+ipv6 inspect name easy-wall user-xmrminer
+ipv6 inspect name easy-wall user-imail
+ipv6 inspect name easy-wall user-icloud
+ipv6 inspect name easy-wall pop3
+ipv6 inspect name easy-wall imap
+ipv6 inspect name easy-wall smtp
+ipv6 inspect name easy-wall imaps
+ipv6 inspect name easy-wall pop3s

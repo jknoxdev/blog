@@ -1,0 +1,76 @@
+* osint
+* tools
+** OSINT Search Engines
+Attackers rely on these OSINT search engines to conduct passive reconnaissance.
+• Google - https://google.com
+• Shodan - https://shodan.io
+• Censys - https://censys.io
+• Fofa - https://fofa.so
+• Dogpile - http://www.dogpile.com
+
+** Email Harvesting
+** Archives - https://archive.org/
+Harvesting email address is an OSINT technique that gives attackers more information
+to conduct attacks such as password stuffing and social engineering attacks.
+Theharvester
+https://github.com/laramies/theHarvester
+Prowl
+https://github.com/nettitude/prowl
+** Google Hacking Database (GHDB)
+Haveibeenpawned -
+https://haveibeenpwned.com/
+The GHDB is an index of search queries (we call them dorks) used to find publicly
+** DNS / Subdomain Enumeration
+available information. Dorks - https://www.exploit-db.com
+Subdomain enumeration is the process of finding valid (resolvable) subdomains for one
+or more domain(s).
+Having unsecured subdomain can lead to serious risk to your business.
+** Aquatone - https://github.com/michenriksen/aquatone
+Tools for subdomain enumeration
+** Sublister - https://github.com/aboul3la/Sublist3r
+#+begin_src sh :results output raw
+cd ~
+pwd
+echo "...starting install"
+git clone https://github.com/aboul3la/Sublist3r.git
+
+cd Sublist3r
+pwd
+echo "...installing requirements"
+echo " make sure to run:"
+echo " sudo pip install -r $(pwd)/requirements.txt"
+echo "...installa complete"
+#+end_src
+
+#+RESULTS:
+/home/arx
+...starting install
+/home/arx/Sublist3r
+...installing requirements
+ make sure to run sudo pip install -r /home/arx/Sublist3rrequirements.txt
+...installa complete
+/home/arx
+...starting install
+...install complete
+/home/arx/Sublist3r
+
+** DNS dumpster - https://dnsdumpster.com/
+** Facebook - https://developers.facebook.com/tools/ct
+** webapp pentesting
+*** burpsuite - https://www.kali.org/tools/burpsuite/
+#+begin_src sh :results output raw
+cd ~/apps
+pwd
+echo "...starting install"
+sudo apt install burpsuite
+echo "...install complete"
+cd 
+pwd
+#+end_src
+
+#+RESULTS:
+/home/arx
+...starting install
+...install complete
+/home/arx
+

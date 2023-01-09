@@ -1,0 +1,52 @@
+* notes
+
+Using the date Command
+Use the date command to display or set your Linux system time. This command requires you to use a specific sequence of numbers to represent the desired date and time. To see your Linux system's idea of the current date and time, use the date command like this:
+
+$ sudo date
+Wed Jan 10 14:17:01 EDT 2005
+To adjust your system's time (say, to January 27, 2006 at 8 a.m.), use a command line with the month, day, hour, minute, and year, like so:
+
+$ sudo date 012606002003
+Fri Jan 27 08:00:00 EDT 2006
+Using the hwclock Command
+Use the hwclock command to display or set your Linux system time, display or set your PC's hardware clock, or to synchronize the system and hardware times. To see your hardware date and time, use hwclock with its --show option like so:
+
+$ sudo hwclock --show
+Fri 27 Jan 2006 02:17:53 PM GMT -0.193809 seconds
+Use hwclock with its --set and --date options to manually set the hardware clock like so:
+
+$ sudo hwclock --set --date "01/27/06 08:00:00"
+$ sudo hwclock --show
+Tue 27 Jan 2006 08:00:08 AM GMT -0.151718 seconds
+In these examples, the hardware clock has been set using hwclock, which is then used again to verify the new hardware date and time. You can also hwclock to set the Linux system date and time date using your hardware clock's values with the Linux system date and time.
+
+For example, to set the system time from your PC's hardware clock, use the --hctosys option like so:
+#+begin_src sh
+sudo hwclock --hctosys
+#+end_src
+
+
+To set your hardware clock using the system time, use the --systohc option like so:
+
+#+begin_src sh
+sudo hwclock --systohc
+#+end_src
+
+#+RESULTS:
+
+
+
+
+#+begin_src sh
+echo "hello"
+#+end_src
+
+#+RESULTS:
+: hello
+
+Changing the Time and Date
+Ubuntu's graphical X tool named time-admin can be used to set your system date and time. The client is found in System, Administration, Time & Date.
+
+After you press Enter, you are asked to enter your password. Type in your password and click the OK button. You will then see a window, as shown in Figure 2.16.
+

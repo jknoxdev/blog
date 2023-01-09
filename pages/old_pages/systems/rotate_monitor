@@ -1,0 +1,3 @@
+xrandr --output DP-2-2-8 --rotate left
+xrandr --output DP-2-2-8 --left-of DP-2-1-8
+xrandr --output eDP-1 --right-of DP-2-1-8

@@ -1,0 +1,5 @@
+for vid in *.mp4; do ffmpeg -i Yoga Nidra Level 5_ _Atma Swarupa_ Experience Your True Eternal Nature (Advanced) - YouTube.mp4 -vn -acodec flac Yoga Nidra Level 5_ _Atma Swarupa_ Experience Your True Eternal Nature (Advanced) - YouTube.flac; done
+ 1172  for vid in *.mp4; do ffmpeg -i  -vn -acodec flac .flac; done && rm ./*.mp4
+ 1176  for vid in *.mp4; do ffmpeg -i  -vn -acodec flac .flac; done && rm ./*.mp4
+
+for vid in *.mp4; do ffmpeg -i "$vid" -vn -acodec flac "${vid%.mp4}.flac"; done

@@ -1,0 +1,16 @@
+allowed_ports = "{80,443}"
+rate_limited_ports = "{ssh}"
+set block-policy return
+block log all
+pass out quick from any to any
+table <bruteforce> persist 
+# only block for 5 min, put
+# */5     * * * *    pfctl -t bruteforce -T expire 300
+# on roots crontab
+
+
+block in log quick proto tcp from <bruteforce> to any port $rate_limited_ports 
+
+pass in quick proto tcp from any to any port $allowed_ports
+
+pass log quick proto tcp from any to any port $rate_limited_ports flags S/SA keep state (max-src-conn 5, max-src-conn-rate 5/30, overload <bruteforce> flush global)

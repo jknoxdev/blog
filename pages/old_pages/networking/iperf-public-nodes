@@ -1,0 +1,29 @@
+perf.scottlinux.com		USA
+California	Hurricane
+Fremont 2	scottlinux.com	1 Gbit/s	5201 TCP/UDP	IPv4 and IPv6	@scottlinux
+
+
+
+
+
+
+iperf.scottlinux.com
+iperf.he.net
+
+via the french. 
+
+ping.online.net
+
+iperf -c -p 5201 iperf.he.net
+iperf -c -p 5200 ping.online.net -t 30 -f m -P 8
+
+-i = output interval
+
+iperf3 -c iperf.scottlinux.com -p 5201 -t 20 -f m -R -P4 -i 3
+
+
+
+iperf3 -c ping.online.net -p 5201 -t 20 -f m -R -P4 -i 3
+
+iperf3 -c -p 5200 ping.online.net -t 30 -f m -P 8
+iperf3 -c 5201 iperf.he.net

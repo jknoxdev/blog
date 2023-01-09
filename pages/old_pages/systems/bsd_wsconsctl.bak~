@@ -1,0 +1,15 @@
+keyboard.bell.pitch=20
+keyboard.bell.period=100
+keyboard.bell.volume=5
+keyboard.bell.pitch.default=20
+keyboard.bell.period.default=100
+keyboard.bell.volume.default=5
+
+keyboard1.bell.pitch=20
+keyboard1.bell.period=100
+keyboard1.bell.volume=5
+keyboard1.bell.pitch.default=20
+keyboard1.bell.period.default=100
+keyboard1.bell.volume.default=5
+
+

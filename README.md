@@ -1,1 +1,3 @@
 # blog
+------
+ - 0.001 - updating w/ all initial files from the last 5 years... 

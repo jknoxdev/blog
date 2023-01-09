@@ -1,0 +1,4 @@
+
+
+# tips for how to program haskell in emacs: 
+

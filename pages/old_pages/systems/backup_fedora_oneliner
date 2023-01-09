@@ -1,0 +1,1 @@
+rsync -avp ./{configs,dictionaries,ebooks,gifs,gPodder,iso,keys,lists,maps,media,node_modules,notes,photos,pinephone,projects,resume,scans,screenshots,scripts,sounds,wallpapers} /run/media/jt/crypt/

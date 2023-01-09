@@ -1,0 +1,17 @@
+
+
+#+title: this is a test note 
+#+author: justin knox
+#+date: 2020-05-10
+
+* figure out how to use orgmode
+
+** TODO this is a todo
+   SCHEDULED: <2020-10-05 ven.>
+
+** NEXT 
+   5:PROPERTIES:
+   :ORDERED:  t
+   :END:
+
+

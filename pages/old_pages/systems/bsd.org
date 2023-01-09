@@ -1,0 +1,435 @@
+
+* Connect to WiFi
+
+To find out the name of the WiFi driver, type the ifconfig command as root
+
+illy# ifconfig | grep flag
+lo0: flags=8049<UP,LOOPBACK,RUNNING,MULTICAST> mtu 32768
+em0: flags=8802<BROADCAST,SIMPLEX,MULTICAST> mtu 1500
+iwm0: flags=808843<UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST,AUTOCONF4> mtu 1500
+enc0: flags=0<>
+pflog0: flags=141<UP,RUNNING,PROMISC> mtu 33136
+
+iwm0 is the Intel WiFi driver. To connect to my home WiFi with wpa2 encryption make a hostname.if file like this...
+
+illy# echo "join myhomewifi wpakey pass_phrase" >> /etc/hostname.iwm0
+illy# echo "dhcp" >> /etc/hostname.iwm0
+
+and check the file for typos...
+
+illy# cat /etc/hostname.iwm0
+
+Then restart the network...
+
+illy# sh /etc/netstart
+
+* links
+** https://sohcahtoa.org.uk/openbsd.html
+** http://www.ixod.org/home/mark/OpenBSD.xhtml
+Configuring OpenBSD
+Why migrate from Debian to OpenBSD?
+*** Moving from Debianb&
+
+I have used Debian GNU/Linux since before version 1 and have run local machines and various services on remote servers for both myself and employers. In the 1990s, a working Debian system needed a manageable number of largely separate processes with simple configuration and was glued together by shell scripts. It was agreeably easy to investigate and control the system's operation.
+
+Over the years that became less true. I don't mind change when it is well-documented and self-contained, for example in migrating my firewalls from ipfwadm to ipchains to iptables. However, avoiding becoming mired in concrete examples, let it suffice to say that the general trend has been toward increasingly complex semantics and automatic behaviors. Probably in pursuit of "ease of use" I am instead given ever more insistent "do what you think I should want".
+
+We no longer seem to build systems from separate parts that do only what is asked and are easily adjusted and substituted. The Linux kernel itself remains excellent and there is certainly a lot of good in modern GNU/Linux distributions. I still use them but, on the personal systems I care about the most, the features just aren't worth the ecosystem of interacting processes that they entail. If I can't easily manage precisely what the system does then that means I also can't be sure of being able to fix it quickly when (not if) it isn't working as I want.
+b&to OpenBSD
+
+I considered switching to a different GNU/Linux distribution such as CRUX but I worry that these will become unviably sidelined in the longer term as mainstream development pushes further into a brave new world of featureful automation. The BSDs don't seem to be as caught up in that push.
+
+I chose OpenBSD because, as well as their general track record of doing good work, they seem to put solid engineering well ahead of adding features. I therefore figured that I should plunge in headlong and try to do things the OpenBSD way instead of just directly replicating how I had done them with Debian GNU/Linux.
+
+Be warned that, while I had used BSDs for years as a user on others' machines, I had not actually run BSD machines myself: what I describe below works for me but may not be optimal or even advisable. Still, having now mostly migrated to OpenBSD, I am pleased with how easily I have been able to make it do what I want while retaining some sense that I know what is happening and why.Documentation
+
+There is plenty of documentation available for OpenBSD. One is expected to read it. There is a lot of detail: it sometimes took me a rereading to piece things together and realize that it did tell me what I needed to know. You are thus encouraged to put time into finding and reading the relevant documentation carefully. I mostly won't provide actual hyperlinks because I want you to read more than I mention explicitly! However, you definitely should note the Frequently Asked Questions and an archive for the misc@openbsd.org mailing list, especially before you ask anything on the list.
+
+Coming from Debian, I had to learn about where to find documentation on my actual OpenBSD system. First, it is worth noting that the manpages are full of useful information. I don't find them wholly comprehensive, and sometimes the examples could bear more explanation, but they are certainly helpful, as often are some of their "see also" pages. It isn't all just command-line options: for example, netintro(4) gives a general introduction to networking, it references netstart(8), which references hostname.if(5) which, along with myname(5), is useful information whose closest analog on Debian would be interfaces(5); another useful example is usb(4) which references many pages that review OpenBSD driver support for various USB devices. It is worth hunting for other documentation too: for instance, packages that you install may include useful information in /usr/local/share/doc/pkg-readmes/ and /usr/local/share/examples, and /etc/examples/ abounds with good ideas for your configuration files. To see a package's install message again use pkg_info -M with the package name.
+
+I shall assume that you are familiar with administrating Linux systems and have explored OpenBSD's documentation. What I go on to describe gives an overview of what worked for me, including some extra points that were not immediately obvious.
+Hardware and versions
+
+At the time that I initially wrote this page my machines followed OpenBSD 5.8 stable. I migrated from some desktop systems that were running Debian 7 and 8 on hardware that was around a decade old, to some Broadwell-based Intel NUCs. I also migrated a remote virtual Debian machine to an OpenBSD-based virtual instance under QEMU. I did run into a couple of small hardware issues with the Intel NUCs but those were fixed in OpenBSD 5.9.
+*** Partitioning
+
+This is how I partitioned a couple of quite different systems using disklabel. OpenBSD conventionally has "a" mounted as root, "b" is swap, and "c" as the whole drive. (For example, to mount an EXT2 filesystem that occupies all of sd3 I might use, mount -t ext2fs /dev/sd3c ...)
+
+For a small drive on the virtual machine that handles my mail and a small wiki:
+partition size (GiB) mounted at
+abat you usually use. In trying out the default ksh instead of bash, I found that my ~/.profile needed,
+
+export HISTFILE=~/.sh_history
+
+to have it preserve my command history between shell sessions.
+
+If your expertise is with only Debian and other GNU-based systems then watch out for subtly different behavior from the base command-line tools such as grep, sed and tar. Experience with commercial Unix vendors or even Mac OS X may help you guess what to watch out for.
+
+Instead of dpkg, apt-get and their kin, OpenBSD offers pkg_add, pkg_delete and more for managing binary packages and their dependencies. I include in my backups the output of pkg_info -m to note what I chose to install. One may also compile packages from the ports tree but I've not needed to. If pkg_info -Q does not suffice for finding packages then the pkglocatedb package provides pkg_locate which is useful for searching by package contents.
+
+In /etc/pkg.conf use something like,
+
+installpath = ftp://ftp.openbsd.org/pub/OpenBSD/%c/packages/%a/
+
+but choose a mirror close to you. This sets where package management looks for the binary repository, a simple analog of a deb line in Debian's /etc/apt/sources.list.
+
+Debian users expect security fixes to be promptly applied to binary packages. This does not happen with OpenBSD and you should avoid that topic in discussion: I accidentally triggered a sorry outburst by merely mentioning it. Personally I think that users should be encouraged to watch out for security patches and rebuild from the ports tree as indicated but if you prefer an easy life and trust M:Tier's binary package repository then review their instructions, install a copy of their public key, and adjust your /etc/pkg.conf to list https://stable.mtier.org/updates/%c/%a as the first installpath. The mirror you chose above is then added on the next line via installpath += b&.
+DC&mons
+
+/etc/rc.conf lists useful services that are bundled with the base system. Do not edit this file, instead create new entries in /etc/rc.conf.local. You can start and stop services manually by treating the scripts in OpenBSD's /etc/rc.d/ much like those in Debian's /etc/init.d/ which are an alternative to systemd's approach with its unit configuration files.
+
+Many services are controlled with an obviously named *ctl utility. As root you can find most of them with,
+
+( IFS=: ; for i in $PATH ; do ls $i ; done ) | grep ctl$ | sort -u
+
+*** Electronic mail
+
+First have a look at /etc/mail/aliases: you should probably adjust some, like root's, and the comment at the top warns to run newaliases so that the changes are written into aliases.db.
+
+OpenBSD comes with its own smtpd. It is easily set up on the basis of the instructions and examples in smtpd.conf(5). I followed the example for permitting local users to relay mail: setting up a server key using openssl and my machine's fully qualified host name then having my /etc/mail/smtpd.conf be,
+
+pki rope.example.org certificate "/etc/ssl/example.org.crt"
+pki rope.example.org key "/etc/ssl/private/example.org.key"
+
+listen on lo0
+listen on vio0 tls auth-optional pki rope.example.org
+listen on vio0 tls-require auth-optional port 465 pki rope.example.org
+
+table aliases db:/etc/mail/aliases.db
+
+accept from local for domain "example.org" alias <aliases> deliver to mbox
+accept from local for any relay
+accept from any for domain "example.org" sender ! "@example.org" alias <aliases> deliver to mbox
+
+vio0 is the external interface on my BigV instance. In understanding the above accept rules, note how smtpd.conf(5) explains, "Any remote sender that passed SMTPAUTH is treated as if it was the server's local user that was sending the mail."
+
+I use a couple of blacklists with the help of the bundled spamd: my /etc/mail/spamd.conf has,
+
+all:\
+        :uatraps:nixspam:
+
+uatraps:\
+        :black:\
+        :msg="Your address %A has sent mail to a ualberta.ca spamtrap\n\
+        within the last 24 hours":\
+        :method=http:\
+        :file=www.openbsd.org/spamd/traplist.gz
+
+nixspam:\
+        :black:\
+        :msg="Your address %A is in the nixspam list\n\
+        See http://www.heise.de/ix/nixspam/dnsbl_en/ for details":\
+        :method=http:\
+        :file=www.openbsd.org/spamd/nixspam.gz
+
+and I use the packet filter to direct blacklisted senders' mail to spamd by including in my /etc/pf.conf,
+
+table <spamd> persist
+pass in on egress proto tcp from <spamd> to self port { smtp, smtps } rdr-to (lo0) port spamd
+
+There is a bit more to mention here. First, to populate this spamd table ensure that the spamd-setup entry in root's crontab is not commented out; crontab(1) may help you. Once this is running, you can check the large list of spammers with pfctl -t spamd -Ts which queries the table. Second, don't forget to update /etc/rc.conf.local.
+
+That's mail sending set up, but what about retrieval? OpenBSD doesn't (yet) have its own IMAP server so I pkg_add dovecot. There are a few installation steps that you can piece together from my above suggestions for where to find documentation. I did additionally tweak the files in /etc/dovecot/conf.d/, for instance in 10-auth.conf I set,
+
+auth_mechanisms = plain
+disable_plaintext_auth = yes
+
+and in 10-ssl.conf I set,
+
+ssl = required
+
+but what you should do depends on your own needs. To start Dovecot on boot, /etc/rc.conf.local needs dovecot added as a value for pkg_scripts.
+Web server
+
+OpenBSD bundles its own httpd. I run a public http: server and a password-protected https: server so my /etc/httpd.conf includes,
+
+types {
+        include "/usr/share/misc/mime.types"
+}
+
+server "public" {
+        listen on * port 80
+        listen on :: port 80
+
+        root ""
+        block
+
+        location "/home/mark/*" {
+            pass
+        }
+}
+
+server "private" {
+        listen on * tls port 443
+        listen on :: tls port 443
+
+        tls certificate "/etc/ssl/webcert.pem"
+        tls key "/etc/ssl/private/web.pem"
+
+        root ""
+        block
+
+        authenticate "private" with "conf/htpasswd"
+
+        location "/home/books/*" {
+            pass
+        }
+}
+
+where /var/www/home/mark/ has my public pages, such as this, and /var/www/home/books/ has my book-keeping for our home finances. I used the htpasswd utility to create the referenced password file /var/www/conf/htpasswd and I created the self-signed SSL certificate with hints from reading dovecot-mkcert.sh.
+
+I also like to run a password-protected wiki. I pkg_add dokuwiki which depends on PHP: as these dependencies are added you will notice associated install messages. Their instructions worked for me and I added php_fpm as a value for pkg_scripts in /etc/rc.conf.local. My "private" server above seems to run Dokuwiki fine with some extra locations added,
+
+        location "/dokuwiki/*.css" {
+            pass
+        }
+
+        location "/dokuwiki/*.html" {
+            pass
+        }
+
+        location "/dokuwiki/*.js" {
+            pass
+        }
+
+        location "/dokuwiki/*.php" {
+            fastcgi socket "/run/php-fpm.sock"
+            pass
+        }
+
+        location "/dokuwiki/*.png" {
+            pass
+        }
+
+        location "/dokuwiki/lib/images/*" {
+            pass
+        }
+
+Dokuwiki has some configuration files in /var/www/dokuwiki/conf/. At a minimum you may wish to adjust local.php and acl.auth.php. As they are in /var/ you may also wish to check that it is all getting backed up along with your other system configuration.
+*** Domain name server
+
+I had been using BIND but OpenBSD comes with its own pair of dC&mons: nsd which I use to serve an authoritative zone for my LAN at home, and unbound which is a recursive resolver that handles everything else. If you want to use these then adjust /etc/rc.conf.local as usual.
+
+nsd is configured in /var/nsd/etc/ and nsd-control-setup puts self-signed SSL certificates in there for you. In nsd.conf's server: clause I add ip-address: 127.0.0.1@5300 because it is only unbound that will be querying it. Then, I add a couple of zone: clauses,
+
+zone:
+        name: "mark.internal."
+        zonefile: "/var/nsd/zones/master/db.mark.internal"
+
+zone:
+        name: "46.20.172.in-addr.arpa."
+        zonefile: "/var/nsd/zones/master/db.172.20.46"
+
+I was able to use my zone files from BIND except for having to expand the $GENERATE statements.
+
+unbound is configured in /var/unbound/etc/. In the server: clause I have,
+
+        do-not-query-localhost: no
+        local-zone: "46.20.172.in-addr.arpa." transparent
+
+and I add a couple of stub-zone: clauses,
+
+stub-zone:
+        name: "mark.internal."
+        stub-addr: 127.0.0.1@5300
+
+stub-zone:
+        name: "46.20.172.in-addr.arpa."
+        stub-addr: 127.0.0.1@5300
+
+So, unbound acts as our domain name server, passing queries through to nsd only when they relate to our LAN. I am happy to rely on my ISP's DNS servers for other queries so I add,
+
+forward-zone:
+        name: "."
+        forward-addr: IP address of my ISP's first DNS
+        forward-addr: IP address of my ISP's second DNS
+        forward-addr: IP address of my ISP's third DNS
+
+*** DHCP server
+
+The bundled dhcpd seems to be based on the popular ISC server so it works fine with the dhcpd.conf I used on Debian. Enabling it in /etc/rc.conf.local involves providing as the value for dhcpd_flags the name of the interface on which it should listen.
+
+While the bundled ntpd works well, I found that using DHCP's ntp-servers option had little useful effect on my OpenBSD-based clients. As a quick hack I extended the clients' /etc/hostname.* to end with,
+
+!/usr/local/sbin/dhcp-ntp-update \$if
+
+which is a simple Perl script that reads the last of the option ntp-servers lines from /var/db/dhclient.leases.$ARGV[0], writes server lines into /etc/ntpd.conf accordingly, then runs /etc/rc.d/ntpd restart. It may be better to have something watch a file written by dhclient's -L option and restart ntpd when the servers change.
+*** ADSL router
+
+At home I have an ADSL modem in bridge mode that is used by one of my Intel NUCs to keep our home online via NAT: a USB ethernet adapter aue0 is hooked to the modem, then the internal ethernet em0 faces the LAN. One initial surprise was how daunting pppd(8) and npppd(8) are but then I found that, with the help of netstart(8), pppoe(4) suffices:
+
+/etc/hostname.aue0 has for the ADSL modem,
+
+inet 192.168.1.2 255.255.255.0
+
+/etc/hostname.em0 has for the LAN,
+
+inet 172.20.46.9 255.255.255.0
+
+/etc/hostname.pppoe0 has for the WAN via the modem,
+
+!/sbin/ifconfig aue0 up
+inet 0.0.0.0 255.255.255.255 NONE \
+        pppoedev aue0 \
+        authproto chap \
+        authname "from my ISP" \
+        authkey "from my ISP" \
+        up
+dest 0.0.0.1
+!/sbin/route add 0.0.0.0/0 -ifp \$if 0.0.0.1
+
+I set the external interface aue0 to be on 192.168.1.0/24 which is convenient for accessing the modem's web-based configuration interface and I set the internal em0 interface with another static IP for the router's address on the LAN to be offered by DHCP's routers option. For pppoe0 we first ensure that the external interface aue0 is up, then we use it to run PPP with CHAP authentication. We add pppoe0 as the default route as the PPP connection is how we reach the Internet.
+
+I briefly mentioned pfctl and /etc/pf.conf in discussing electronic mail but there is more to say. OpenBSD's packet filter is what one uses instead of Linux's iptables, at least for IP-level rules. One writes rules into the configuration file and activates them with pfctl -f /etc/pf.conf. A sufficient /etc/pf.conf for my router is,
+
+set block-policy return
+set skip on lo
+pass
+
+ext_if = "pppoe0"
+int_if = "em0"
+
+# perform NAT for these machines so that they may use the Internet
+
+table <nathosts> { \
+    172.20.46.2,  172.20.46.3,  172.20.46.4,  172.20.46.5,  \
+    172.20.46.14, 172.20.46.15, 172.20.46.22, 172.20.46.23, \
+    172.20.46.28, 172.20.46.29, 172.20.46.30 }
+
+# allow no IPv6 traffic
+
+block log quick inet6 all
+
+# do not allow packets from LAN addresses on $ext_if
+
+block in log quick on $ext_if inet from $int_if:network
+
+# allow only packets from LAN addresses on $int_if
+
+block in log quick on $int_if inet from ! $int_if:network
+
+# from $int_if allow only DHCP and SSH to the router
+
+block in log on $int_if proto { tcp, udp } to self
+pass in on $int_if proto tcp from any to self port { ssh }
+pass in on $int_if proto udp from any to self port { bootpc, bootps }
+
+# from $ext_if allow only SSH to the router
+
+block in log on $ext_if proto { tcp, udp } all
+pass in on $ext_if proto tcp from any to (self) port { ssh }
+
+# from $ext_if allow connection to SSH on a machine on the LAN
+
+pass in on $ext_if proto tcp from any to (self) port 9450 rdr-to 172.20.46.15 port ssh
+
+# actually do Network Address Translation for chosen machines
+
+pass out on $ext_if from <nathosts> nat-to ($ext_if)
+
+# clamp the Maximum Segment Size rather than rely on Path MTU Discovery
+
+match on $ext_if scrub (max-mss 1440)
+
+These rules are of course rather simpler than is best. If allowing external ssh connections it may behoove you to use stateful tracking options like max-src-conn-rate. The max-mss rule may remind you to filter some ICMP traffic. These policies are for you to decide, though in testing ideas you should find that including the log keyword in rules allows you to use tcpdump -i pflog0 to watch the logged packets come by.
+
+For the pass in on $ext_if ... to (self) rules I found that I had to use parentheses around the self so that the rules are updated when pppoe0 gets its IP address assigned.
+
+The nathosts table may be adjusted dynamically. For instance, from the command line,
+
+pfctl -t nathosts -T delete 172.20.46.22 172.20.46.23
+pfctl -t nathosts -T add    172.20.46.20 172.20.46.21
+
+pfctl -t nathosts -Ts lists the hosts for which NAT is being done.
+
+The router must forward IPv4 packets. For /etc/sysctl.conf I adapted /etc/examples/sysctl.conf by uncommenting net.inet.ip.forwarding=1.
+Backup volumes
+
+For creating backups to be stored in my fire safe or off-site I use encrypted volumes mounted as USB mass storage. With Linux I use LUKS and on OpenBSD I am using the encrypting discipline offered by softraid(4). Let's say that the new USB drive that I want to use for backups presents as sd1. I use fdisk to create an OpenBSD partition on its MBR and disklabel to create a "d" filesystem partition with an FS type of RAID. Now, if the passphrase were in ~/passphrase I would use,
+
+bioctl -c C -l /dev/sd1d -p ~/passphrase softraid0
+
+to create the encrypted volume on partition "d". It confirms,
+
+softraid0: CRYPTO volume attached as sd2
+
+To clear junk from the partition table of this new encrypted disk I use,
+
+dd if=/dev/zero of=/dev/rsd2c bs=1m count=1
+
+Notice how the device naming has been working: I used sd1d for filesystem partition "d" of drive sd1 and then rsd2c as filesystem partition "c" (the whole) of raw drive sd2.
+
+Now, I use fdisk to create an OpenBSD partition on sd2's MBR then disklabel to create filesystem partitions on it with the usual FS type of 4.2BSD. Then, for instance if I had created a "d" filesystem partition on the encrypted volume, I could use newfs sd2d to create a mountable filesystem on it to which I could rsync my data. Whenever I am finished with the encrypted backup volume, bioctl -d sd2 releases it.
+
+When I want to mount the encrypted volume I can use,
+
+bioctl -c C -l /dev/sd1d -p ~/passphrase softraid0
+mount /dev/sd2d /my/mount/point
+
+to recreate sd2 and gain access to its encrypted filesystem. If it is an SSD drive then I mount it with -o softdep,noatime.
+
+B) Copyright 2015 to 2018 by Mark T. B. Carroll, mark@ixod.org. All rights reserved.5
+* mount
+copied from this link here:
+[[Https://www.romanzolotarev.com/openbsd/exfat.html][https://www.romanzolotarev.com/openbsd/exfat.html]]
+
+Tested on OpenBSD 6.4 with exfat-fuse 1.2.8
+Mount exFAT file system on OpenBSD
+
+First, find your uid:
+
+$ id -u
+1000
+$
+
+Then as root install exfat-fuse and mount exFAT file system with your uid:
+
+# pkg_add exfat-fuse
+quirks-3.16 signed on 2018-10-12T15:26:25Z
+exfat-fuse-1.2.8: ok
+# mkdir -p /mnt/sd1i
+# mount.exfat -o uid=1000 /dev/sd1i /mnt/sd1i
+FUSE exfat 1.2.8
+#
+
+Use the file system as a regular user:
+
+$ df /mnt/sd1i
+Filesystem  512-blocks      Used     Avail Capacity  Mounted on
+fusefs         7716800      1344   7710336     0%    /mnt/sd1i
+$ touch /mnt/sd1i/test
+$ ls -l /mnt/sd1i/test
+-rwxrwxrwx  1 romanzolotarev  wheel  0 Nov  5 16:11 /mnt/sd1i/test
+$
+
+To unmount run as root:
+
+# umount /mnt/sd1i
+
+
+dmesg | grep sd
+disklabel sd1
+
+The contents of disklabels
+
+BSD disklabels traditionally contain 8 entries for describing partitions. These are, by convention, labeled alphabetically, 'a' through to 'h'. Some BSD variants have since increased this to 16 partitions, labeled 'a' through to 'p'.
+
+Also by convention, partitions 'a', 'b', and 'c' have fixed meanings:
+
+    Partition 'a' is the "root" partition, the volume from which the operating system is bootstrapped. The boot code in the Volume Boot Record containing the disklabel is thus simplified, as it need only look in one fixed location to find the location of the boot volume;
+    Partition 'b' is the "swap" partition;
+    Partition 'c' overlaps all of the other partitions and describes the entire disk. Its start and length are fixed. On systems where the disklabel co-exists with another partitioning scheme (such as on PC hardware), partition 'c' may actually only extend to an area of disk allocated to the BSD operating system, and partition 'd' is used to cover the whole physical disk.
+
+https://en.wikipedia.org/wiki/BSD_disklabel#The_contents_of_disklabels
+
+** if fs is unknown 
+fsck -t 
+
+http://daemonforums.org/showthread.php?t=10944
+ sysctl hw.disknames
+
+https://www.reddit.com/r/openbsd/comments/in3i37/check_file_system_type/
+doas dumpfs /dev/rsdXx | head -n1
+dumpfs / | head -1
+file -s /dev/rsd0a
+doas dumpfs /dev/rsdXx | head -n1

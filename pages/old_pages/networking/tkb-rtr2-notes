@@ -1,0 +1,33 @@
+
+
+
+ip access-list extended FIREWALL
+ permit icmp any any echo-reply
+ permit tcp any host 71.19.155.4 eq www
+ permit udp 71.19.155.0 0.0.0.252 eq isakmp any
+ permit esp 71.19.155.4 0.0.0.3 any
+ permit ahp 71.19.155.4 0.0.0.3 any
+ permit udp 71.19.155.4 0.0.0.3 any eq non500-isakmp
+ permit tcp 71.19.155.4 0.0.0.3 any eq domain
+ permit udp 71.19.155.4 0.0.0.3 any eq domain
+ permit gre 71.19.155.4 0.0.0.3 any
+ permit udp 71.19.155.4 0.0.0.3 any eq isakmp
+
+
+
+
+
+ip access-list extended FIREWALL
+ permit icmp any any echo-reply
+ permit tcp any host 71.19.155.4 eq www
+ permit udp 71.19.155.0 0.0.0.252 eq isakmp any
+ permit esp 71.19.155.4 0.0.0.3 any
+ permit ahp 71.19.155.4 0.0.0.3 any
+ permit udp 71.19.155.4 0.0.0.3 any eq non500-isakmp
+ permit tcp 71.19.155.4 0.0.0.3 any eq domain
+ permit udp 71.19.155.4 0.0.0.3 any eq domain
+ permit gre 71.19.155.4 0.0.0.3 any
+ permit udp 71.19.155.4 0.0.0.3 any eq isakmp
+ deny   ip any any log
+
+

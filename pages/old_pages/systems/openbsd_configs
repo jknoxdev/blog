@@ -1,0 +1,1 @@
+    wsconsctl keyboard.encoding=us.metaesc --> /etc/wsconsctl.conf 

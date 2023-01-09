@@ -1,0 +1,7 @@
+githubtoken: 
+<nppcrypt version="1012">
+<encryption cipher="rijndael256" mode="gcm" encoding="base64" tag="xaS8ZwoyNNGZBnwYYQRtzg==" />
+<random iv="BEb7URfpknxy/3R6KYzysQ==" salt="bdO5ZygAVueFWuF+mmGcJg==" />
+<key algorithm="scrypt" N="16384" r="8" p="1" />
+</nppcrypt>
+hqYWlrrGqnDAyNdjntNx30jLi1zW3izrLDYMj8GEKbrx4aIhruRkX2A2

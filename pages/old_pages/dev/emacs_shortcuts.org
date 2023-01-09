@@ -1,0 +1,101 @@
+* navigation
+  - ctl a - beg of line
+  - ctl e - end of line
+  - met shf } - end of par
+  - met shf { - beg of par
+  - ctl c, ctl d - inserts date - 
+* orgmode
+** tab to expand
+   - tab test item one
+   - tab test item two
+     + tab nest one
+     + tab nest two
+       - tab two one
+       - omg, this is amazing
+* lists
+** plain lists
+   + list item one
+   + list item two
+   + use alt + enter to tack item
+   - test item one
+     - test nested
+** plain
+list with brackets
+   - minus item one
+   - minus item two
+   - holy sheet, where has this been all this time
+     + plus item one
+     + plus item two
+   - tab cycles through levels, wholy sheeit
+   - [ ] list item
+   - [ ] next item
+   - [X] ctl-c ctl-c to check
+   - [ ] next test item
+     - nested item also
+*** sub sub item
+**** four levels deep
+***** five levels
+****** six levels
+******* seven levels
+******** eight levels whoa 
+	 - default picks up on the last level on the cursor
+* hyperlinks
+** simple url: 
+*** http://eff.org
+*** file:images/example.jpg
+*** https://www.linuxjournal.com/article/9116 <--article source for this! yeet
+* tables
+** table editor in ascii
+*** here is a nested table                                            :jtown:
+
+| column 1   | column 2     | so this is some shit |
+|------------+--------------+----------------------|
+| cell one   | use tab      | to go to next cell   |
+| everything | will         | auto {alighnn.. holy |
+| sheit      | ctl _ - undo |                      |
+|            |              |                      |
+
+| col 1 | col 2 | col 3 |   |   |   |
+|       |       |       |   |   |   |
+
+| key1 |                 | key3 | col1    | col 2     | col 3   | holy    |
+|------+-----------------+------+---------+-----------+---------+---------|
+|      |                 |      |         | just type | the col | headers |
+|      |                 |      |         |           |         |         |
+|      |                 |      |         |           |         |         |
+|      |                 |      |         | then pipe | and a   | singl   |
+|      |                 |      |         |           |         |         |
+|      |                 |      |         |           |         |         |
+| alt  | 2277            | rght | new col | dash and  | tab     | the     |
+| alt  |                 | left | del col |           |         |         |
+| alt  | 576 shft        |      |         |           |         |         |
+|      | eql(=) for math |      |         |           |         |         |
+|      |                 |      |         |           |         |         |
+#+TBLFM: $2=48*12shft
+* tags                                                     :red:green:yellow:
+  - so this is a headline
+  - ctl c ctl c - on a headline to tag it
+  - only headlines can be tagged (not lists)
+  - good things to tag could be peoples names?
+  - nested tags are nested..
+* todos
+** TODO setup orgmode to auto open previos buffers 
+** TODO p/u at figure 10 on org mode page @ https://www.linuxjournal.com/article/9116
+   SCHEDULED: <2020-05-14 Thu>
+  - todos
+  - todos can also be organized by  
+  - ctl c ctl t - on headline assigns a todo
+** TODO type the todo to mek the todo                            :jtown:test:
+** [ ] test todo w/ checklist? ctl c ctl c still tags it               :nope:
+* priorities
+
+    #+SEQ_TODO: TODO TEST DONE
+  - #+SEQ_TODO: TODO TEST DONE <--line will set the priorities, top of doc
+** TODO [#C] Wash Car
+** TODO [#B] Deadline
+** TODO [#A] Replace the lightbulb
+ - this is a another line
+   
+
+
+

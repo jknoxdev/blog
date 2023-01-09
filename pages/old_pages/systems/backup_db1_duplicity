@@ -1,0 +1,1 @@
+PASSPHRASE=--- duplicity --verbosity=info --encrypt-key=16F024F151927C05BDC41F3D0CF3CBD921383B81 --sign-key=ACA0F4ED6D313C34F9BB0FF21E9EDDB9CB35919C /home/jknox/testhome file:///home/jknox/dupetest/
