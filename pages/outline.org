@@ -10,7 +10,7 @@
  - from the 15 different browser favorites pages I have, it's becoming impossible to manage
  - place that I can start documenting my work to make it externally facing. My org file is also becoming impossible to manage.
  - 
-*** events [[./events.org]]
+*** [[./events.org]]
 **** past
 ***** defcons
 **** upcoming
