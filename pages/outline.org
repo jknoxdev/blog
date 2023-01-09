@@ -1,7 +1,8 @@
 * blog
 ** topics
-*** about / contact
-**** why I'm writing a blog 2023
+*** [[./about_contact.org]]
+**** ./posts.org
+***** TODO why I'm writing a blog 2023
  - because John Sonmez said [so](https://medium.com/@jsonmez) 
  - organization
  - seo
@@ -9,7 +10,6 @@
  - my notes folder is overflowing
  - from the 15 different browser favorites pages I have, it's becoming impossible to manage
  - place that I can start documenting my work to make it externally facing. My org file is also becoming impossible to manage.
- - 
 *** [[./events.org]]
 **** past
 ***** defcons
@@ -25,27 +25,24 @@ https://affiliate-program.amazon.com/signup
 **** organization
  - Org Mode - Organize Your Life In Plain Text! - http://doc.norang.ca/org-mode.html
  - Org Mode Publishing - https://orgmode.org/manual/Publishing.html
-*** [[./os]]
+*** [[./os.org]]
 **** bsds
 **** linuxs
-*** [[./memes]]
-*** reading lists
+*** [[./memes.org]]
+*** [[./reading_lists.org]]
 **** liNks
-*** scripts
-**** admin
-**** fun
-**** systems
-*** security
-**** ecryption
-***** workstations
-***** mobile
-*** privacy
-**** mobile
-**** offgrid
-*** projects
-**** cyboard
-**** fingertip effects
-* todos
-** q1
- - [ ] setup affiliate links for blog
-https://affiliate-program.amazon.com/signup
+*** [[./scripts.org]]
+**** [[./admin.org]]
+**** [[./fun.org]]
+**** [[./systems.org]]
+*** [[./security]]
+**** [[./ecryption.org]]
+***** [[./workstation.org]]
+***** [[./mobile.org]]
+*** [[./privacy.org]]
+**** [[./mobile.org]]
+**** [[./offgrid.org]]
+*** [[./projects.org]]
+**** [[./cyboard.org]]
+**** [[./fingertip_effects]]
+
