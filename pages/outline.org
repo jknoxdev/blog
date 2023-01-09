@@ -1,7 +1,7 @@
 * blog
 ** topics
-*** [[./about_contact.org]]
-**** ./posts.org
+*** [[./about.org]]
+**** TODO ./posts.org
 ***** TODO why I'm writing a blog 2023
  - because John Sonmez said [so](https://medium.com/@jsonmez) 
  - organization
@@ -32,17 +32,17 @@ https://affiliate-program.amazon.com/signup
 *** [[./reading_lists.org]]
 **** liNks
 *** [[./scripts.org]]
-**** [[./admin.org]]
-**** [[./fun.org]]
-**** [[./systems.org]]
-*** [[./security]]
-**** [[./ecryption.org]]
-***** [[./workstation.org]]
-***** [[./mobile.org]]
+**** TODO [[./admin.org]]
+**** TODO [[./fun.org]]
+**** TODO [[./systems.org]]
+*** [[./securit.org]]
+**** TODO [[./encryption.org]]
+***** TODO [[./workstation.org]]
+***** TODO [[./mobile.org]]
 *** [[./privacy.org]]
-**** [[./mobile.org]]
-**** [[./offgrid.org]]
+**** TODO [[./mobile.org]]
+**** TODO [[./offgrid.org]]
 *** [[./projects.org]]
-**** [[./cyboard.org]]
-**** [[./fingertip_effects]]
+**** TODO [[./cyboard.org]]
+**** TODO [[./fingertip_effects]]
 
