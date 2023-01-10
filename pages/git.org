@@ -18,4 +18,4 @@ Host gitlab.com
 ```
 #+end_src
 
-** clone away
+** let the clone wars begin
