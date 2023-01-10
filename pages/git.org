@@ -5,8 +5,8 @@ dev/gitlab/
 ** copy key to git server / host
 ** edit config file on local: 
  
+#+begin_src md :results output raw
 ~/.ssh/config
-
 ```
 Host github.com
      PreferredAuthentications publickey
@@ -16,5 +16,6 @@ Host gitlab.com
      PreferredAuthentications publickey
      IdentityFile ~/.ssh/id_rsa_jknoxdev_l2w
 ```
+#+end_src
 
 ** clone away
