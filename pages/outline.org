@@ -25,7 +25,7 @@ https://affiliate-program.amazon.com/signup
 **** organization
  - Org Mode - Organize Your Life In Plain Text! - http://doc.norang.ca/org-mode.html
  - Org Mode Publishing - https://orgmode.org/manual/Publishing.html
-*** [[./os.org][./os]]
+*** [[./os.org][./operating_systems]]
 **** bsds
 **** linuxs
 *** [[./memes.org][./memes]]
