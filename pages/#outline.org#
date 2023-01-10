@@ -1,0 +1,49 @@
+* blog
+** topics
+*** [[./about.org][./about]]
+**** TODO ./posts.org
+***** TODO why I'm writing a blog 2023
+ - because John Sonmez said [so](https://medium.com/@jsonmez) 
+ - organization
+ - seo
+ - job hunting sucks and reddit can only take you so far
+ - my notes folder is overflowing
+ - from the 15 different browser favorites pages I have, it's becoming impossible to manage
+ - place that I can start documenting my work to make it externally facing. My org file is also becoming impossible to manage.
+*** [[./dev.org][./dev]]
+**** [[./git.org][git]]
+*** [[./events.org][./events]] 
+**** past
+***** defcons
+**** upcoming
+*** [[./links.org][./links]]
+**** languages
+***** racket
+ - https://docs.racket-lang.org/guide/classes.html
+ - https://docs.racket-lang.org/quick/index.html
+**** blogging
+ - [ ] setup affiliate links for blog:
+https://affiliate-program.amazon.com/signup
+**** organization
+ - Org Mode - Organize Your Life In Plain Text! - http://doc.norang.ca/org-mode.html
+ - Org Mode Publishing - https://orgmode.org/manual/Publishing.html
+*** [[./os.org][./operating_systems]]
+**** bsds
+**** linuxs
+*** [[./memes.org][./memes]]
+*** [[./reading_lists.org][./reading_lists]]
+*** [[./scripts.org][./scripts]]
+ + TODO [[./admin.org][./admin]]
+ + TODO [[./fun.org][./fun]]
+ + TODO [[./systems.org][./systems]]
+**** [[./security.org][./security]]
+ + TODO [[./encryption.org][./encryption]]
+ + TODO [[./workstation.org][./workstation]]
+ + TODO [[./mobile.org][./mobile]]
+**** [[./privacy.org][./privacy]]
+ + TODO [[./mobile.org][./mobile]]
+ + TODO [[./offgrid][.offgrid]]
+**** [[./projects.org][./projects]]
+ + TODO [[./cyboard.org][./cyboard]]
+ + TODO [[./fingertip_effects.org][./fingertip_effects]]
+

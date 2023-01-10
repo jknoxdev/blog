@@ -1,0 +1,18 @@
+dev/gitlab/
+
+* set git config to more than one repo:
+** make new keys
+** copy key to git server / host
+** edit config file on local: 
+ 
+~/.ssh/config
+```
+Host github.com
+     PreferredAuthentications publickey
+     IdentityFile /home/jknoxdev/.ssh/id_ecdsa_win_ubn_2
+
+Host gitlab.com
+     PreferredAuthentications publickey
+     IdentityFile ~/.ssh/id_rsa_jknoxdev_l2w
+```
+** clone away
