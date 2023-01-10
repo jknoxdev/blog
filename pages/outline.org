@@ -1,6 +1,6 @@
 * blog
 ** topics
-*** [[./about.org]]
+*** [[./about.org][./about]]
 **** TODO ./posts.org
 ***** TODO why I'm writing a blog 2023
  - because John Sonmez said [so](https://medium.com/@jsonmez) 
@@ -10,7 +10,7 @@
  - my notes folder is overflowing
  - from the 15 different browser favorites pages I have, it's becoming impossible to manage
  - place that I can start documenting my work to make it externally facing. My org file is also becoming impossible to manage.
-*** [[./events.org]]
+*** [[./events.org][./events]] 
 **** past
 ***** defcons
 **** upcoming
@@ -29,20 +29,19 @@ https://affiliate-program.amazon.com/signup
 **** bsds
 **** linuxs
 *** [[./memes.org][./memes]]
-*** [[./reading_lists.org]]
-**** liNks
-*** [[./scripts.org]]
-**** TODO [[./admin.org]]
-**** TODO [[./fun.org]]
-**** TODO [[./systems.org]]
-*** [[./security.org]]
-**** TODO [[./encryption.org]]
-***** TODO [[./workstation.org]]
-***** TODO [[./mobile.org]]
-*** [[./privacy.org]]
-**** TODO [[./mobile.org]]
-**** TODO [[./offgrid.org]]
-*** [[./projects.org]]
-**** TODO [[./cyboard.org]]
-**** TODO [[./fingertip_effects]]
+*** [[./reading_lists.org][./reading_lists]]
+*** [[./scripts.org][./scripts]]
+ + TODO [[./admin.org][./admin]]
+ + TODO [[./fun.org][./fun]]
+ + TODO [[./systems.org][./systems]]
+**** [[./security.org][./security]]
+ + TODO [[./encryption.org][./encryption]]
+ + TODO [[./workstation.org][./workstation]]
+ + TODO [[./mobile.org][./mobile]]
+**** [[./privacy.org][./privacy]]
+ + TODO [[./mobile.org][./mobile]]
+ + TODO [[./offgrid][.offgrid]]
+**** [[./projects.org][./projects]]
+ + TODO [[./cyboard.org][./cyboard]]
+ + TODO [[./fingertip_effects.org][./fingertip_effects]]
 
