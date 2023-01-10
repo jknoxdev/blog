@@ -1,1 +1,5 @@
 #./operating_systems
+
+*** ./operating_systems
+**** bsds
+**** linuxs
