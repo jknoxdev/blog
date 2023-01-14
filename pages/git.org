@@ -26,30 +26,37 @@ pieced together from:
 keygen:
 https://rodneylab.com/using-fido-u2f-github-ssh/
 
+
+#+begin_src md :results output raw
 ```
 ssh-keygen -t ecdsa-sk -C "email_used_to_signup@github.com" -f ~/.ssh/id_ecdsa_u2fknum_github
 ```
+#+end_src
+
 
 
 testing:  
 https://stackoverflow.com/questions/43319094/how-do-you-find-your-gitlab-host-name-to-test-your-ssh-key
 
+
+#+begin_src md :results output raw
 ```
 ssh -T git@gitlab.com
 ```
+#end_src
 
 if you see something like this: 
-```
+#+begin_src md :results output raw
 ➜  profile git:(gh-pages) ssh -T git@github.com
 sign_and_send_pubkey: signing failed for ECDSA-SK "/home/arx/.ssh/id_ecdsa_u2fktwo_github" from agent: agent refused operation
 Hi jknoxdev! You've successfully authenticated, but GitHub does not provide shell access
-```
+#+end_src
 
 and to double check keys (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/reviewing-your-ssh-keys)
 
-```
+#+begin_src md :results output raw
 ssh-add -l -E sha256
-```
+#+end_src
 
 also, if you have more than one git connected to the same key, it will have to be disconnected and then reconnected before it can authenticate with the second account.. 
 
