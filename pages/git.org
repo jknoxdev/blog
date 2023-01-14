@@ -45,6 +45,12 @@ sign_and_send_pubkey: signing failed for ECDSA-SK "/home/arx/.ssh/id_ecdsa_u2fkt
 Hi jknoxdev! You've successfully authenticated, but GitHub does not provide shell access
 ```
 
+and to double check keys (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/reviewing-your-ssh-keys)
+
+```
+ssh-add -l -E sha256
+```
+
 then, check the ~/.ssh/config file again, it is authenticating on one of the old keys.
 the next step here would be to copy the keys over to each of the other machines, and then 
 confirm everything works, then remove the old keys (once backed up)
