@@ -26,11 +26,8 @@ pieced together from:
 keygen:
 https://rodneylab.com/using-fido-u2f-github-ssh/
 
-
 #+begin_src md :results output raw
-```
 ssh-keygen -t ecdsa-sk -C "email_used_to_signup@github.com" -f ~/.ssh/id_ecdsa_u2fknum_github
-```
 #+end_src
 
 
@@ -38,14 +35,12 @@ ssh-keygen -t ecdsa-sk -C "email_used_to_signup@github.com" -f ~/.ssh/id_ecdsa_u
 testing:  
 https://stackoverflow.com/questions/43319094/how-do-you-find-your-gitlab-host-name-to-test-your-ssh-key
 
-
 #+begin_src md :results output raw
-```
 ssh -T git@gitlab.com
-```
-#end_src
+#+end_src
 
 if you see something like this: 
+
 #+begin_src md :results output raw
 ➜  profile git:(gh-pages) ssh -T git@github.com
 sign_and_send_pubkey: signing failed for ECDSA-SK "/home/arx/.ssh/id_ecdsa_u2fktwo_github" from agent: agent refused operation
