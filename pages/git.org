@@ -47,7 +47,7 @@ sign_and_send_pubkey: signing failed for ECDSA-SK "/home/arx/.ssh/id_ecdsa_u2fkt
 Hi jknoxdev! You've successfully authenticated, but GitHub does not provide shell access
 #+end_src
 
-and to double check keys (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/reviewing-your-ssh-keys)
+double check keys (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/reviewing-your-ssh-keys)
 
 #+begin_src md :results output raw
 ssh-add -l -E sha256
