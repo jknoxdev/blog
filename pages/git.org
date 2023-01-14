@@ -19,3 +19,33 @@ Host gitlab.com
 #+end_src
 
 ** let the clone wars begin
+
+* set git to run with u2f on zero2f
+pieced together from:
+
+keygen:
+https://rodneylab.com/using-fido-u2f-github-ssh/
+
+```
+ssh-keygen -t ecdsa-sk -C "email_used_to_signup@github.com" -f ~/.ssh/id_ecdsa_u2fknum_github
+```
+
+
+testing:  
+https://stackoverflow.com/questions/43319094/how-do-you-find-your-gitlab-host-name-to-test-your-ssh-key
+
+```
+ssh -T git@gitlab.com
+```
+
+if you see something like this: 
+```
+➜  profile git:(gh-pages) ssh -T git@github.com
+sign_and_send_pubkey: signing failed for ECDSA-SK "/home/arx/.ssh/id_ecdsa_u2fktwo_github" from agent: agent refused operation
+Hi jknoxdev! You've successfully authenticated, but GitHub does not provide shell access
+```
+
+then, check the ~/.ssh/config file again, it is authenticating on one of the old keys.
+the next step here would be to copy the keys over to each of the other machines, and then 
+confirm everything works, then remove the old keys (once backed up)
+
