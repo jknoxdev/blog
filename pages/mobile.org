@@ -1,4 +1,17 @@
 # / security / mobile
 * android
+** how to sync android to linux machine
+from: https://askubuntu.com/questions/343502/how-to-rsync-to-android
+
+#+begin_src md :results output raw
+/run/user/$UID/gvfs
+cd /run/user/$UID/gvfs/mtp*
+cd Internal\ shared\ storage
+cd Movies
+cd AutoGuard
+time rsync --verbose --progress --omit-dir-times --no-perms --inplace ./* /media/arx/crypt/videos/dashcams/android/pixel_5/$(date -I)/
+#+end_src
+
+
 * ios
 * linux
