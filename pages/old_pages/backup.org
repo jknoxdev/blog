@@ -4310,7 +4310,7 @@ sudo tar \
 #+end_src
 ** ## single line, singleline for emacs -> zsh copy pasting: 
 ```
-sudo tar --verbose --lzop --create --file /media/arx/crypt/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_$(date -I).tar.lzop --exclude /dev --exclude /mnt --exclude /proc --exclude /sys --exclude /tmp --exclude /media --exclude /lost+found --exclude /swapfile --exclude /swap_nvme_22g --exclude /opt/metasploit-framework /
+sudo tar --verbose --lzop --create --file /media/arx/crypt/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_$(date -I).tar.lzop --exclude /dev --exclude /mnt --exclude /proc --exclude /sys --exclude /tmp --exclude /media --exclude /lost+found --exclude /swapfile --exclude /swap_nvme_22g --exclude /opt/metasploit-framework --exclude /run --exclude /proc --exclude /tmp /
 
 ```
 
