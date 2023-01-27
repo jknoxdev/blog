@@ -1,0 +1,138 @@
+* linux
+** check_power
+
+#+begin_src sh :results output raw
+#!/bin/bash
+
+echo "-----------checking on freedesk------------------"
+upower -i /org/freedesktop/UPower/devices/battery_BAT0
+upower -i `upower -e | grep 'BAT'`
+upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ full|to\ empty|percentage"
+echo "-----------checking on sys/class------------------"
+cat /sys/class/power_supply/BAT0/capacity
+find /sys/class/power_supply/BAT0/ -type f | xargs -tn1 cat
+echo "-----------checking on acpi------------------"
+acpi -b
+echo "-----------------fin-------------------------"
+
+#+end_src
+
+#+RESULTS:
+-----------checking on freedesk------------------
+  native-path:          BAT0
+  vendor:               Razer
+  model:                Razer Blade Stealth
+  serial:               cnb1rc30019667u01514
+  power supply:         yes
+  updated:              Fri 27 Jan 2023 02:55:56 PM EST (59 seconds ago)
+  has history:          yes
+  has statistics:       yes
+  battery
+    present:             yes
+    rechargeable:        yes
+    state:               discharging
+    warning-level:       none
+    energy:              38.2074 Wh
+    energy-empty:        0 Wh
+    energy-full:         52.1945 Wh
+    energy-full-design:  53.592 Wh
+    energy-rate:         19.9122 W
+    voltage:             11.512 V
+    time to empty:       1.9 hours
+    percentage:          73%
+    capacity:            97.3922%
+    icon-name:          'battery-full-symbolic'
+  History (charge):
+    1674849356	73.000	discharging
+  History (rate):
+    1674849356	19.912	discharging
+
+  native-path:          BAT0
+  vendor:               Razer
+  model:                Razer Blade Stealth
+  serial:               cnb1rc30019667u01514
+  power supply:         yes
+  updated:              Fri 27 Jan 2023 02:55:56 PM EST (59 seconds ago)
+  has history:          yes
+  has statistics:       yes
+  battery
+    present:             yes
+    rechargeable:        yes
+    state:               discharging
+    warning-level:       none
+    energy:              38.2074 Wh
+    energy-empty:        0 Wh
+    energy-full:         52.1945 Wh
+    energy-full-design:  53.592 Wh
+    energy-rate:         19.9122 W
+    voltage:             11.512 V
+    time to empty:       1.9 hours
+    percentage:          73%
+    capacity:            97.3922%
+    icon-name:          'battery-full-symbolic'
+  History (charge):
+    1674849356	73.000	discharging
+  History (rate):
+    1674849356	19.912	discharging
+
+    state:               discharging
+    time to empty:       1.9 hours
+    percentage:          73%
+-----------checking on sys/class------------------
+72
+POWER_SUPPLY_NAME=BAT0
+POWER_SUPPLY_TYPE=Battery
+POWER_SUPPLY_STATUS=Discharging
+POWER_SUPPLY_PRESENT=1
+POWER_SUPPLY_TECHNOLOGY=Unknown
+POWER_SUPPLY_CYCLE_COUNT=0
+POWER_SUPPLY_VOLTAGE_MIN_DESIGN=11550000
+POWER_SUPPLY_VOLTAGE_NOW=11487000
+POWER_SUPPLY_CURRENT_NOW=1708000
+POWER_SUPPLY_CHARGE_FULL_DESIGN=4640000
+POWER_SUPPLY_CHARGE_FULL=4519000
+POWER_SUPPLY_CHARGE_NOW=3278000
+POWER_SUPPLY_CAPACITY=72
+POWER_SUPPLY_CAPACITY_LEVEL=Normal
+POWER_SUPPLY_MODEL_NAME=Razer Blade Stealth
+POWER_SUPPLY_MANUFACTURER=Razer
+POWER_SUPPLY_SERIAL_NUMBER=cnb1rc30019667u01514
+4640000
+cnb1rc30019667u01514
+Unknown
+1708000
+3278000
+1
+0
+0
+0
+unsupported
+disabled
+0
+disabled
+auto
+Razer
+11487
+0
+0
+0
+unsupported
+disabled
+0
+disabled
+auto
+1708
+BAT0
+Battery
+4519000
+72
+0
+11487000
+Discharging
+0
+Razer Blade Stealth
+11550000
+Normal
+-----------checking on acpi------------------
+Battery 0: Discharging, 72%, 01:55:09 remaining
+-----------------fin-------------------------

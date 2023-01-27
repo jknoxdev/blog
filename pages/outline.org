@@ -33,7 +33,6 @@ https://affiliate-program.amazon.com/signup
 *** [[./memes.org][./memes]]
 *** [[./reading_lists.org][./reading_lists]]
 *** [[./scripts.org][./scripts]]
- + TODO [[./admin.org][./admin]]
  + [[./old_pages/backup.org][./backup_notes]]
  + TODO [[./fun.org][./fun]]
  + TODO [[./systems.org][./systems]]
