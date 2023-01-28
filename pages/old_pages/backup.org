@@ -4313,7 +4313,20 @@ sudo tar \
 sudo tar --verbose --lzop --create --file /media/arx/crypt/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_$(date -I).tar.lzop --exclude /dev --exclude /mnt --exclude /proc --exclude /sys --exclude /tmp --exclude /media --exclude /lost+found --exclude /swapfile --exclude /swap_nvme_22g --exclude /opt/metasploit-framework --exclude /run --exclude /proc --exclude /tmp /
 
 ```
+** ## single line, no compression, 20230128
 
+ - turning off compression in hopes of decreasing completion time
+```
+sudo tar --verbose --create --file /media/arx/crypt/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_$(date -I).tar --exclude /dev --exclude /mnt --exclude /proc --exclude /sys --exclude /tmp --exclude /media --exclude /lost+found --exclude /swapfile --exclude /opt/metasploit-framework --exclude /run --exclude /proc --exclude /tmp /
+
+```
+** ## single line, differential, 20230128
+https://linuxconfig.org/how-to-create-incremental-and-differential-backups-with-tar
+
+```
+# $ tar --verbose --create --file=/mnt/data/documents0.tar --listed-incremental=/mnt/data/documents.snar ~/Documents
+sudo tar --verbose --create --file /media/arx/crypt/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_$(date -I).tar --listed-incremental /media/arx/crypt/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_$(date -I).snar --exclude /dev --exclude /mnt --exclude /proc --exclude /sys --exclude /tmp --exclude /media --exclude /lost+found --exclude /swapfile --exclude /opt/metasploit-framework --exclude /run --exclude /proc --exclude /tmp /
+```
 #+RESULTS:
 ** ## test date output
 #+begin_src sh :results output
