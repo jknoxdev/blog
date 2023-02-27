@@ -1,41 +1,3 @@
-
-* PDFs:
- - [[./desksup.pd][Desktop Support Engineer]]
- - [[./dt.pdf][Datacenter Operations Engineer / Technician]]
- - [[./eswe.pdf][Embedded Software Engineer]]
- - [[./infeng.pdf][Infrastructure Engineer]]
- - [[./invmgmt.pdf][Datacenter Inventory Manager]]
- - [[./neteng.pdf][Network Engineer]]
- - [[./noc.pdf][Network Operations Engineer]]
- - [[./secan.pdf][Security Analyst]]
- - [[./seceng.pdf][Security Engineer]]
- - [[./secops.pdf][Security Operations Engineer]]
- - [[./sre.pdf][Site Reliability Engineer]]
- - [[./swe.pdf][Software Engineer]]
- - [[./sysadm.pdf][Systems Administrator]]
- - [[./syseng.pdf][Systems Engineer]]
-
-* files:.
-** [[./desksup.pdf]]
-** [[./dt.pdf]]
-** [[./eswe.pdf]]
-** [[./infeng.pdf]]
-** [[./invmgmt.pdf]]
-** [[./neteng.pdf]]
-** [[./noc.pdf]]
-** [[./secan.pdf]]
-** [[./seceng.pdf]]
-** [[./secops.pdf]]
-** [[./sre.pdf]]
-** [[./swe.pdf]]
-** [[./sysadm.pdf]]
-** [[./syseng.pdf]]
-** [[./testinfeng.pdf]]
-** [[./test.pdf]]
-** [[./README.org]]
-
-
-* tree
 #+name: tree_to_org.sh
 #+begin_src sh :results output raw :exports none
 # courtesy of https://stackoverflow.com/questions/23989232/is-there-a-way-to-represent-a-directory-tree-in-a-github-readme-md
@@ -44,3 +6,42 @@ tree=$(tree -tf --noreport -I '*~' --charset ascii $1 |
        sed -e 's/| \+/*/g' -e 's/[|`]-\+/**/g' -e 's:\(* \)\(\(.*/\)\([^/]\+\)\):\1[[\2]]:g')
 printf "* Project tree${tree}"
 #+end_src
+
+* Here are a collection of my resumes, please feel free to send me an [[mailto:justin.knox@posteo.de][email]] with any questions!
+
+** PDFs:
+  - [[./desksup.pdf][Desktop Support Engineer / Technician]]
+  - [[./dt.pdf][Datacenter Operations Engineer / Technician]]
+  - [[./eswe.pdf][Embedded Software Engineer]]
+  - [[./infeng.pdf][Infrastructure Engineer]]
+  - [[./invmgmt.pdf][Datacenter Inventory Manager]]
+  - [[./neteng.pdf][Network Engineer]]
+  - [[./noc.pdf][Network Operations Engineer]]
+  - [[./secan.pdf][Security Analyst]]
+  - [[./seceng.pdf][Security Engineer]]
+  - [[./secops.pdf][Security Operations Engineer]]
+  - [[./sre.pdf][Site Reliability Engineer]]
+  - [[./swe.pdf][Software Engineer]]
+  - [[./sysadm.pdf][Systems Administrator]]
+  - [[./syseng.pdf][Systems Engineer]]
+
+**** files:.
+***** [[./desksup.pdf]]
+***** [[./dt.pdf]]
+***** [[./eswe.pdf]]
+***** [[./infeng.pdf]]
+***** [[./invmgmt.pdf]]
+***** [[./neteng.pdf]]
+***** [[./noc.pdf]]
+***** [[./secan.pdf]]
+***** [[./seceng.pdf]]
+***** [[./secops.pdf]]
+***** [[./sre.pdf]]
+***** [[./swe.pdf]]
+***** [[./sysadm.pdf]]
+***** [[./syseng.pdf]]
+***** [[./testinfeng.pdf]]
+***** [[./test.pdf]]
+***** [[./README.org]]
+
+
