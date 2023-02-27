@@ -1,0 +1,12 @@
+* tree
+#+name: tree_to_org.sh
+#+begin_src sh :results output raw :exports code
+# courtesy of https://stackoverflow.com/questions/23989232/is-there-a-way-to-represent-a-directory-tree-in-a-github-readme-md
+# File: tree-md
+tree=$(tree -tf --noreport -I '*~' --charset ascii $1 |
+       sed -e 's/| \+/*/g' -e 's/[|`]-\+/**/g' -e 's:\(* \)\(\(.*/\)\([^/]\+\)\):\1[[\2]]:g')
+printf "* Project tree${tree}"
+#+end_src
+
+#+RESULTS: tree_to_org.sh
+
