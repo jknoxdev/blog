@@ -4328,13 +4328,56 @@ https://linuxconfig.org/how-to-create-incremental-and-differential-backups-with-
 sudo tar --verbose --create --file /media/arx/crypt/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_$(date -I).tar --listed-incremental /media/arx/crypt/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_$(date -I).snar --exclude /dev --exclude /mnt --exclude /proc --exclude /sys --exclude /tmp --exclude /media --exclude /lost+found --exclude /swapfile --exclude /opt/metasploit-framework --exclude /run --exclude /proc --exclude /tmp /
 ```
 #+RESULTS:
-** ## test date output
-#+begin_src sh :results output
-date +'%Y.%m.%d.%H%M%S'
+#+begin_example
+-------------starting backup at 2023.02.09.024136---------------------
+backupfile=/media/arx/crypt/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_2023-02-09.tar
+backupdir=/
+incfile=/media/arx/crypt/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_2023-02-09.snar
+exludes=--exclude /dev --exclude /mnt --exclude /proc --exclude /sys --exclude /tmp --exclude /media --exclude /lost+found --exclude /swapfile --exclude /opt/metasploit-framework --exclude /run --exclude /proc --exclude /tmp
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+0 sec
+0:00:00
+--------------------------------------------------------------------------
+#+end_example
+
+#+begin_src sh :results output replace
+  start=$(date +%s)
+
+  echo "----NOT READY for scripting, need to manually enter SNAR FILE -----------------"
+
+  backupfile="/media/arx/crypt1/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_$(date -I).tar"
+  backupdir="/"
+  incfile="/media/arx/crypt1/backups/laptops/razorblade_stealth/linux_partition/backup_l2arx_$(date -I).snar"
+  #excludes="--exclude /dev --exclude /mnt --exclude /proc --exclude /sys --exclude /media --exclude /lost+found --exclude /swapfile --exclude /opt/metasploit-framework --exclude /run --exclude /tmp"
+  excludes="--exclude='/dev/' --exclude='/mnt/' --exclude='/proc/' --exclude='/sys/' --exclude='/media/' --exclude='/lost+found/' --exclude='/swapfile' --exclude='/opt/metasploit-framework/' --exclude='/run/' --exclude='/tmp/-'"
+  echo "-------------starting backup at "$(date +'%Y.%m.%d.%H%M%S')"---------------------"
+  echo "backupfile="$backupfile
+  echo "backupdir="$backupdir
+  echo "incfile="$incfile
+  echo "exludes="$excludes
+  echo "--------------------------------------------------------------------------"
+
+  # sudo tar --verbose --create --file $backupfile --listed-incremental $incfile $excludes $backupdir
+  # echo "tar --verbose --create --file $backupfile --listed-incremental $incfile $excludes $backupdir"
+  sudo tar --verbose --create --file $backupfile --listed-incremental $incfile $excludes $backupdir
+  echo "--------------------------------------------------------------------------"
+  end=$(date +%s)
+
+  seconds=$(echo "$end - $start" | bc)
+  echo $seconds' sec'
+  awk -v t=$seconds 'BEGIN{t=int(t*1000); printf "%d:%02d:%02d\n", t/3600000, t/60000%60, t/1000%60}'
+  echo "--------------------------------------------------------------------------"
+
 #+end_src
 
-#+RESULTS:
-: 2023.01.23.155731
+--------------------------------------------------------------------------
+
+
+
+
+
+
 
 tar -dvf backup_l2arx_2022-12-24.tar.lzop / 2>backup_l2arx_$(date -I)_verification_errors | tee backup_l2arx_$(date -I)_verification
 ** ## w progress:

@@ -3,3 +3,43 @@
 *** ./operating_systems
 **** bsds
 **** linuxs
+***** bash
+****** date
+# -1 -> explicit current date, bash >=4.3 defaults to current time if not provided
+# -2 -> start time for shell
+printf -v date '%(%Y-%m-%d)T\n' -1
+
+# put current date as yyyy-mm-dd HH:MM:SS in $date
+printf -v date '%(%Y-%m-%d %H:%M:%S)T\n' -1
+
+# to print directly remove -v flag, as such:
+printf '%(%Y-%m-%d)T\n' -1
+# -> current date printed to terminal
+[[https://stackoverflow.com/questions/1401482/yyyy-mm-dd-format-date-in-shell-script]]
+printf '%(%Y%m%d_%H%M%S)T' -1
+
+****** find
+ 2585  find ./notes/ -type f -name "*.org" | grep -r "2>"
+****** output redirection
+
+
+exec 2>&1                                                                                                                                                                                                                                                                     
+[[https://linuxize.com/post/bash-redirect-stderr-stdout/]]
+
+In Bash and other Linux shells, when a program is executed, it uses three standard I/O streams. Each stream is represented by a numeric file descriptor:
+0 - stdin, the standard input stream.
+1 - stdout, the standard output stream.
+2 - stderr, the standard error stream.
+
+command > file 2>&1
+Copy
+> file redirect the stdout to file, and 2>&1 redirect the stderr to the current location of stdout.
+
+The order of redirection is important. For example, the following example redirects only stdout to file. This happens because the stderr is redirected to stdout before the stdout was redirected to file.
+
+command 2>&1 > file
+Copy
+Another way to redirect stderr to stdout is to use the &> construct. In Bash &> has the same meaning as 2>&1:
+command &> file
+
+
