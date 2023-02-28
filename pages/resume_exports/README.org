@@ -1,5 +1,5 @@
 #+name: push_resumes_out.sh
-#+begin_src sh :results output replace exports 
+#+begin_src sh :results output replace 
 commit_message="--emacs-push-- updated swe resume"
 exec 2>&1
 echo "----pushing to gitlab--"$commit_message"------"
@@ -16,6 +16,58 @@ git push
 echo "----------complete--------------"
 
 #+end_src
+
+#+RESULTS: push_resumes_out.sh
+#+begin_example
+----pushing to gitlab----emacs-push-- updated swe resume------
+[main f94d256] --emacs-push-- updated swe resume
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+Warning: Permanently added the ECDSA host key for IP address '2607:7700:0:1e:0:1:8c52:7004' to the list of known hosts.
+To github.com:jknoxdev/blog.git
+   463f6e5..f94d256  main -> main
+---copying to local github folder for export---
+cp: './desksup.pdf' and '/home/arx/blog/pages/resume_exports/desksup.pdf' are the same file
+cp: './dt.pdf' and '/home/arx/blog/pages/resume_exports/dt.pdf' are the same file
+cp: './eswe.pdf' and '/home/arx/blog/pages/resume_exports/eswe.pdf' are the same file
+cp: './infeng.pdf' and '/home/arx/blog/pages/resume_exports/infeng.pdf' are the same file
+cp: './invmgmt.pdf' and '/home/arx/blog/pages/resume_exports/invmgmt.pdf' are the same file
+cp: './neteng.pdf' and '/home/arx/blog/pages/resume_exports/neteng.pdf' are the same file
+cp: './noc.pdf' and '/home/arx/blog/pages/resume_exports/noc.pdf' are the same file
+cp: './secan.pdf' and '/home/arx/blog/pages/resume_exports/secan.pdf' are the same file
+cp: './seceng.pdf' and '/home/arx/blog/pages/resume_exports/seceng.pdf' are the same file
+cp: './secops.pdf' and '/home/arx/blog/pages/resume_exports/secops.pdf' are the same file
+cp: './sre.pdf' and '/home/arx/blog/pages/resume_exports/sre.pdf' are the same file
+cp: './swe.pdf' and '/home/arx/blog/pages/resume_exports/swe.pdf' are the same file
+cp: './sysadm.pdf' and '/home/arx/blog/pages/resume_exports/sysadm.pdf' are the same file
+cp: './syseng.pdf' and '/home/arx/blog/pages/resume_exports/syseng.pdf' are the same file
+cp: './test.pdf' and '/home/arx/blog/pages/resume_exports/test.pdf' are the same file
+cp: './testinfeng.pdf' and '/home/arx/blog/pages/resume_exports/testinfeng.pdf' are the same file
+---pushing to github--------------------------
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+Host key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM
++---[ECDSA 256]---+
+| .o=X*+      .o.=|
+|  .o=O         o |
+| .  . .   E   . .|
+|o     .. . .   o |
+| +   . +S o.o . .|
+|. . .  o++.... o.|
+|   o    o.   ...+|
+|  o    .   o .oo.|
+| .      ... o....|
++----[SHA256]-----+
+sign_and_send_pubkey: signing failed for ECDSA-SK "/home/arx/.ssh/id_ecdsa_u2fkthree_github" from agent: agent refused operation
+sign_and_send_pubkey: signing failed for ECDSA-SK "/home/arx/.ssh/id_ecdsa_u2fktwo_github" from agent: agent refused operation
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+----------complete--------------
+#+end_example
 
 
 #+name: tree_to_org.sh
