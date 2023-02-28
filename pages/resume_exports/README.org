@@ -1,5 +1,5 @@
 #+name: push_resumes_out.sh
-#+begin_src sh :results output replace exports none
+#+begin_src sh :results output replace :exports none
 echo "---------NEEDS WORK---------20230227-------------"
 commit_message="--emacs-push-- updated swe resume"
 exec 2>&1
@@ -15,7 +15,6 @@ git add .
 git commit -m "$commit_message"
 git push
 echo "----------complete--------------"
-
 #+end_src
 
 
