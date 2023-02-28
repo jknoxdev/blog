@@ -1,3 +1,22 @@
+#+name: push_resumes_out.sh
+#+begin_src sh :results output replace exports none
+commit_message="--emacs-push-- updated swe resume"
+exec 2>&1
+echo "----pushing to gitlab--"$commit_message"------"
+git add .
+git commit -m "$commit_message"
+git push
+echo "---copying to local github folder for export---"
+cp ./*.pdf ~/blog/pages/resume_exports/
+cd ~/blog/pages/resume_exports/
+git add .
+git commit -m "$commit_message"
+git push
+echo "----------complete--------------"
+
+#+end_src
+
+
 #+name: tree_to_org.sh
 #+begin_src sh :results output raw :exports none
 # courtesy of https://stackoverflow.com/questions/23989232/is-there-a-way-to-represent-a-directory-tree-in-a-github-readme-md
