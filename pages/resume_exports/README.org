@@ -29,6 +29,9 @@ tree=$(tree -tf --noreport -I '*~' --charset ascii $1 |
 printf "* Project tree${tree}"
 #+end_src
 
+#+RESULTS: tree_to_org.sh
+* Project tree
+
 * Here are a collection of my resumes, please feel free to send me an [[mailto:justin.knox@posteo.de][email]] with any questions!
 
 ** PDFs:
